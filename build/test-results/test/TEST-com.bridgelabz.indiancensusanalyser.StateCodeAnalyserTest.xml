@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-06T20:24:47" hostname="DESKTOP-H88E5E6" time="0.098">
+<testsuite name="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-09-06T21:04:19" hostname="DESKTOP-H88E5E6" time="0.093">
   <properties/>
-  <testcase name="given_StateCodeCSV_Should_ReturnsCorrectRecords" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.098"/>
+  <testcase name="given_StateCodeCSV_Should_ReturnsCorrectRecords" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.083"/>
+  <testcase name="givenStaeCode_CSV_WithWrongFile_ShouldThrowException" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.01"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

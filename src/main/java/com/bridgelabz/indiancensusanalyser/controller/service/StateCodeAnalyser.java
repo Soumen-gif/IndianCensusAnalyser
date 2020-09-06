@@ -1,6 +1,7 @@
 package com.bridgelabz.indiancensusanalyser.controller.service;
 
 import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
+import com.bridgelabz.indiancensusanalyser.controller.Exception.StateCodeAnalyserException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
@@ -10,22 +11,22 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class StateCodeAnalyser {
-    public int StateCodeCSVData(String csvFilePath) throws CensusAnalyserException {
+    public int StateCodeCSVData(String csvFilePath) throws StateCodeAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             CsvToBeanBuilder<StateCodeCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
             csvToBeanBuilder.withType(StateCodeCSV.class);
             csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
             CsvToBean<StateCodeCSV> csvToBean = csvToBeanBuilder.build();
-            Iterator<StateCodeCSV> indianCensusCSVIterator = csvToBean.iterator();
+            Iterator<StateCodeCSV> indianStateCodeCSVIterator = csvToBean.iterator();
             int numOfEntries = 0;
-            while (indianCensusCSVIterator.hasNext()) {
+            while (indianStateCodeCSVIterator.hasNext()) {
                 numOfEntries++;
-                indianCensusCSVIterator.next();
+                indianStateCodeCSVIterator.next();
             }
             return numOfEntries;
-            } catch (Exception e) {
-            throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+            } catch (Throwable e) {
+            throw new StateCodeAnalyserException(e.getMessage(),
+                    StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM);
 
         }
 
