@@ -18,5 +18,5 @@ public class CensusAnalyserTest {
            Assert.assertEquals(29,numOfRecords);
        }catch (CensusAnalyserException e){
        }
-       }
+    }
 }
