@@ -2,6 +2,7 @@ package com.bridgelabz.indiancensusanalyser;
 
 import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
+import com.bridgelabz.indiancensusanalyser.controller.service.StateCodeAnalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,8 +12,8 @@ public class StateCodeAnalyserTest {
     @Test
     public void given_StateCodeCSV_Should_ReturnsCorrectRecords() {
         try {
-            CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
-            int numOfRecords = censusAnaslyser.loadIndianCensusCsvData(INDIAN_STATE_CODE_FILE_PATH);
+            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+            int numOfRecords = stateCodeAnalyser.StateCodeCSVData(INDIAN_STATE_CODE_FILE_PATH);
             Assert.assertEquals(37, numOfRecords);
         } catch (CensusAnalyserException e) {
         }

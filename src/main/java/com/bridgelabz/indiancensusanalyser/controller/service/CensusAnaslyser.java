@@ -3,7 +3,6 @@ package com.bridgelabz.indiancensusanalyser.controller.service;
 import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.bridgelabz.indiancensusanalyser.controller.IndianCensusCSV;
 
 import java.io.Reader;
 import java.nio.file.Files;

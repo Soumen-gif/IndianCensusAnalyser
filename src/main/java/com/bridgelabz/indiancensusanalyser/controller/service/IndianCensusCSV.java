@@ -1,4 +1,4 @@
-package com.bridgelabz.indiancensusanalyser.controller;
+package com.bridgelabz.indiancensusanalyser.controller.service;
 
 import com.opencsv.bean.CsvBindByName;
 
