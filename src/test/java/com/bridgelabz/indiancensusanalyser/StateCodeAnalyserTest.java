@@ -23,12 +23,25 @@ public class StateCodeAnalyserTest {
         }
     }
     @Test
-    public void givenStaeCode_CSV_WithWrongFile_ShouldThrowException() {
+    public void givenStaeCode_CSV_WithWrongFile_Path_ShouldThrowException() {
         try {
             StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(StateCodeAnalyserException.class);
             stateCodeAnalyser.StateCodeCSVData(WRONG_CSV_FILE_PATH);
+        } catch (StateCodeAnalyserException e) {
+            Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
+        }
+    }
+    @Test
+    public void givenStaeCode_CSV_WithWrongFile_ShouldThrowException() {
+        try {
+            final String WRONG_CSV_FILE_TYPE = "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.txt";
+
+            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(StateCodeAnalyserException.class);
+            stateCodeAnalyser.StateCodeCSVData(WRONG_CSV_FILE_TYPE);
         } catch (StateCodeAnalyserException e) {
             Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
         }
