@@ -1,4 +1,4 @@
-package service;
+package com.bridgelabz.indiancensusanalyser.controller.Exception;
 
 public class CensusAnalyserException extends Exception {
 

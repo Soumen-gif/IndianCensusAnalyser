@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-06T20:12:27" hostname="DESKTOP-H88E5E6" time="0.125">
+  <properties/>
+  <testcase name="given_IndianCensusCSVFil_Should_ReturnsCorrectRecords" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.125"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

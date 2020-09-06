@@ -1,10 +1,10 @@
-package service;
+package com.bridgelabz.indiancensusanalyser.controller.service;
 
+import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import controller.IndianCensusCSV;
+import com.bridgelabz.indiancensusanalyser.controller.IndianCensusCSV;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;

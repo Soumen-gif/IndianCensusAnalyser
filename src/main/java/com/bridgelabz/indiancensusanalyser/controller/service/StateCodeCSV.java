@@ -1,8 +1,10 @@
-package controller;
+package com.bridgelabz.indiancensusanalyser.controller.service;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IndianCensusCSV {
+import com.opencsv.bean.CsvBindByName;
+
+public class StateCodeCSV {
     @CsvBindByName(column = "State", required = true)
     public String state;
 
@@ -25,3 +27,4 @@ public class IndianCensusCSV {
                 '}';
     }
 }
+
