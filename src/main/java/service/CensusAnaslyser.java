@@ -24,10 +24,11 @@ public class CensusAnaslyser {
                 indianCensusCSVIterator.next();
             }
             return numOfEntries;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-        }
 
         }
+
     }
+}
