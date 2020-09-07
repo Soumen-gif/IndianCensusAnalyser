@@ -14,9 +14,7 @@ public class CensusAnaslyser {
     public int loadIndianCensusCsvData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             Iterator<IndianCensusCSV> censusCSVIterator = this.getCSVFileIterator(reader, IndianCensusCSV.class);
-            Iterable<IndianCensusCSV> iterable = () -> censusCSVIterator;
-            int namOfEntries = (int) StreamSupport.stream(iterable.spliterator(), false).count();
-            return namOfEntries;
+            return this.getCount(censusCSVIterator);
            } catch (Exception e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -24,14 +22,19 @@ public class CensusAnaslyser {
     }
     public int StateCodeCSVData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
-            Iterator<StateCodeCSV> censusCSVIterator = this.getCSVFileIterator(reader, StateCodeCSV.class);
-            Iterable<StateCodeCSV> iterable = () -> censusCSVIterator;
-            int namOfEntries = (int) StreamSupport.stream(iterable.spliterator(), false).count();
-            return namOfEntries;
-            } catch (Exception e) {
+            Iterator<StateCodeCSV> censusCSVIterator = this.getCSVFileIterator(reader,StateCodeCSV.class);
+            return this.getCount(censusCSVIterator);
+
+        } catch (Exception e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
+    }
+    private <E> int getCount(Iterator<E> iterator)
+    {
+        Iterable<E> iterable = () -> iterator;
+        int namOfEateries = (int) StreamSupport.stream(iterable.spliterator(), false).count();
+        return namOfEateries;
     }
     private <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> CSVClass) throws CensusAnalyserException {
         try {
