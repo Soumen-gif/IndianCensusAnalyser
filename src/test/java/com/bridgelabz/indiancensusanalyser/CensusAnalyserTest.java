@@ -8,10 +8,10 @@ import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
 
 public class CensusAnalyserTest {
     private static final String INDIAN_CENSUS_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
+                                      "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "\"E:\\\\IndianCensusAnalyser\\\\src\\\\test";
     private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER =
-            "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
+                                       "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
     private static final String INDIAN_CENSUS_CSV_MISSING = "./src/test/resources/IndiaStateCensusDataMissingHeader.csv";
 
     @Test
@@ -19,8 +19,9 @@ public class CensusAnalyserTest {
         try {
             CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
             int numOfRecords = censusAnaslyser.loadIndianCensusCsvData(INDIAN_CENSUS_FILE_PATH);
-            Assert.assertEquals(29, numOfRecords);
+            Assert.assertEquals(28, numOfRecords);
         } catch (CensusAnalyserException e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,10 +64,15 @@ public class CensusAnalyserTest {
     public void givenMissingHeader_InIndiaCensusData_ShouldReturnCustomExceptionType() {
         try {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
-            int numOfRecords = censusAnalyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_MISSING);
+             censusAnalyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_MISSING);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
+    }
+    @Test
+    public void test() throws Exception {
+        throw new Exception();
+
     }
 }
 

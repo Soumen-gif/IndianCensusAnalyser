@@ -1,9 +1,6 @@
 package com.bridgelabz.indiancensusanalyser;
-
-import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.bridgelabz.indiancensusanalyser.controller.Exception.StateCodeAnalyserException;
 import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
-import com.bridgelabz.indiancensusanalyser.controller.service.StateCodeAnalyser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,45 +12,46 @@ public class StateCodeAnalyserTest {
     private static final String INDIAN_STATE_CODE_CSV_WRONG_DELIMITER =
             "./src/test/resources/IndiaStateCodeWrongDelimiter.csv";
 
-
     @Test
     public void given_StateCodeCSV_Should_ReturnsCorrectRecords() {
         try {
-            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
-            int numOfRecords = stateCodeAnalyser.StateCodeCSVData(INDIAN_STATE_CODE_FILE_PATH);
+            CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
+            int numOfRecords = censusAnaslyser.StateCodeCSVData(INDIAN_STATE_CODE_FILE_PATH);
             Assert.assertEquals(37, numOfRecords);
-           } catch (StateCodeAnalyserException e) {
+        } catch (StateCodeAnalyserException e) {
         }
     }
+
     @Test
     public void givenStaeCode_CSV_WithWrongFile_Path_ShouldThrowException() {
         try {
-            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+            CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(StateCodeAnalyserException.class);
-            stateCodeAnalyser.StateCodeCSVData(WRONG_CSV_FILE_PATH);
+            censusAnaslyser.StateCodeCSVData(WRONG_CSV_FILE_PATH);
         } catch (StateCodeAnalyserException e) {
             Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
         }
     }
+
     @Test
     public void givenStaeCode_CSV_WithWrongFile_ShouldThrowException() {
         try {
             final String WRONG_CSV_FILE_TYPE = "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.txt";
-
-            StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+            CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(StateCodeAnalyserException.class);
-            stateCodeAnalyser.StateCodeCSVData(WRONG_CSV_FILE_TYPE);
+            censusAnaslyser.StateCodeCSVData(WRONG_CSV_FILE_TYPE);
         } catch (StateCodeAnalyserException e) {
             Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
         }
     }
+
     @Test
     public void givenWrongDelimiter_InIndiaStateCodeData_ShouldReturnCustomExceptionType() {
-        StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+        CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
         try {
-            stateCodeAnalyser.StateCodeCSVData(INDIAN_STATE_CODE_CSV_WRONG_DELIMITER);
+            censusAnaslyser.StateCodeCSVData(INDIAN_STATE_CODE_CSV_WRONG_DELIMITER);
         } catch (StateCodeAnalyserException e) {
             Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
         }

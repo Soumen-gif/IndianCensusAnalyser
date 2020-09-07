@@ -2,24 +2,22 @@ package com.bridgelabz.indiancensusanalyser.controller.service;
 
 import com.opencsv.bean.CsvBindByName;
 
-import com.opencsv.bean.CsvBindByName;
-
 public class StateCodeCSV {
-    @CsvBindByName(column = "State", required = true)
+    @CsvBindByName(required = true)
     public String state;
 
-    @CsvBindByName(column = "Population", required = true)
+    @CsvBindByName(required = true)
     public int population;
 
-    @CsvBindByName(column = "AreaInSqKm", required = true)
+    @CsvBindByName(required = true)
     public int areaInSqKm;
 
-    @CsvBindByName(column = "DensityPerSqKm", required = true)
+    @CsvBindByName(required = true)
     public int densityPerSqKm;
 
     @Override
     public String toString() {
-        return "IndiaCensusCSV{" +
+        return "StateCodeCSV{" +
                 "State='" + state + '\'' +
                 ", Population='" + population + '\'' +
                 ", AreaInSqKm='" + areaInSqKm + '\'' +
