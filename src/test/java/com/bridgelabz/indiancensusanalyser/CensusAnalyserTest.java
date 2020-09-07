@@ -19,7 +19,7 @@ public class CensusAnalyserTest {
         try {
             CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
             int numOfRecords = censusAnaslyser.loadIndianCensusCsvData(INDIAN_CENSUS_FILE_PATH);
-            Assert.assertEquals(28, numOfRecords);
+            Assert.assertEquals(29, numOfRecords);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class CensusAnalyserTest {
         CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
         try {
             censusAnaslyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_WRONG_DELIMITER);
-        } catch (CensusAnalyserException e) {
+        } catch ( CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
@@ -68,11 +68,6 @@ public class CensusAnalyserTest {
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
-    }
-    @Test
-    public void test() throws Exception {
-        throw new Exception();
-
     }
 }
 
