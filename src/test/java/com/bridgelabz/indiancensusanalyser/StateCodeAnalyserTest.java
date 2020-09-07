@@ -12,6 +12,9 @@ public class StateCodeAnalyserTest {
     private static final String INDIAN_STATE_CODE_FILE_PATH =
             "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCode.csv";
     private static final String WRONG_CSV_FILE_PATH = "\"E:\\\\IndianCensusAnalyser\\\\src\\\\test";
+    private static final String INDIAN_STATE_CODE_CSV_WRONG_DELIMITER =
+            "./src/test/resources/IndiaStateCodeWrongDelimiter.csv";
+
 
     @Test
     public void given_StateCodeCSV_Should_ReturnsCorrectRecords() {
@@ -42,6 +45,15 @@ public class StateCodeAnalyserTest {
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(StateCodeAnalyserException.class);
             stateCodeAnalyser.StateCodeCSVData(WRONG_CSV_FILE_TYPE);
+        } catch (StateCodeAnalyserException e) {
+            Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
+        }
+    }
+    @Test
+    public void givenWrongDelimiter_InIndiaStateCodeData_ShouldReturnCustomExceptionType() {
+        StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
+        try {
+            stateCodeAnalyser.StateCodeCSVData(INDIAN_STATE_CODE_CSV_WRONG_DELIMITER);
         } catch (StateCodeAnalyserException e) {
             Assert.assertEquals(StateCodeAnalyserException.ExceptionType.STATECODE_FILE_PROBLEM, e.type);
         }
