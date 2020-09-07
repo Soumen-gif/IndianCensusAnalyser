@@ -11,6 +11,7 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
 
     public <E> Iterator<E> getCSVFileIterator(Reader reader, Class CSVClass)
                                               throws CensusAnalyserException {
+
         try {
             CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
             csvToBeanBuilder.withType(CSVClass);
@@ -19,6 +20,7 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
             return csvToBean.iterator();
         } catch (IllegalStateException e) {
             throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+
         }
     }
 }
