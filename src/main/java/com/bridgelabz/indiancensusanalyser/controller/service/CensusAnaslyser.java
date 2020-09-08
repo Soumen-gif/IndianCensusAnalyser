@@ -1,9 +1,11 @@
 package com.bridgelabz.indiancensusanalyser.controller.service;
 
+import com.bridgelabz.indiancensusanalyser.controller.Exception.CSVBuilderException;
 import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,17 +18,20 @@ public class CensusAnaslyser {
             ICSVBuilder csvBuilder =  CSVBuilderFactory.createCSVBuilder();
             Iterator<IndianCensusCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, IndianCensusCSV.class);
             return this.getCount(censusCSVIterator);
-           } catch (Exception e) {
+           } catch (Exception | CSVBuilderException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
+//        catch (CSVBuilderException e){
+//            throw new CensusAnalyserException(e.getMessage(), e.type.name());
+//        }
     }
     public int StateCodeCSVData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder =  CSVBuilderFactory.createCSVBuilder();
             Iterator<StateCodeCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, StateCodeCSV.class);
             return this.getCount(censusCSVIterator);
-        } catch (Exception e) {
+        } catch (Exception | CSVBuilderException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
@@ -34,7 +39,7 @@ public class CensusAnaslyser {
     private <E> int getCount(Iterator<E> iterator)
     {
         Iterable<E> iterable = () -> iterator;
-        int namOfEateries = (int) StreamSupport.stream(iterable.spliterator(), false).count();
-        return namOfEateries;
+        int noOfEntries = (int) StreamSupport.stream(iterable.spliterator(), false).count();
+        return noOfEntries;
     }
 }
