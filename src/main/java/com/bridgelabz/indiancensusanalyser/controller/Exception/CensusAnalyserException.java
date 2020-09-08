@@ -13,7 +13,7 @@ public class CensusAnalyserException extends Exception {
     //   this.type = type;
    //}
     public enum ExceptionType {
-        CENSUS_FILE_PROBLEM
+        CENSUS_FILE_PROBLEM,NO_CENSUS_DATA
     }
     public CensusAnalyserException(String message, String name) {
         super(message);

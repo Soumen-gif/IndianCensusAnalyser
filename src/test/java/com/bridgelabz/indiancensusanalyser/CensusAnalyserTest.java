@@ -1,5 +1,7 @@
 package com.bridgelabz.indiancensusanalyser;
 
+import com.bridgelabz.indiancensusanalyser.controller.service.IndianCensusCSV;
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -8,11 +10,13 @@ import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
 
 public class CensusAnalyserTest {
     private static final String INDIAN_CENSUS_FILE_PATH =
-                                      "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
+            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "\"E:\\\\IndianCensusAnalyser\\\\src\\\\test";
     private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER =
-                                       "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
+            "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
     private static final String INDIAN_CENSUS_CSV_MISSING = "./src/test/resources/IndiaStateCensusDataMissingHeader.csv";
+    private final String INDIA_CENSUS_CSV_FILE_PATH =
+            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
 
     @Test
     public void given_IndianCensusCSVFil_Should_ReturnsCorrectRecords() {
@@ -55,7 +59,7 @@ public class CensusAnalyserTest {
         CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
         try {
             censusAnaslyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_WRONG_DELIMITER);
-        } catch ( CensusAnalyserException e) {
+        } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
@@ -64,10 +68,20 @@ public class CensusAnalyserTest {
     public void givenMissingHeader_InIndiaCensusData_ShouldReturnCustomExceptionType() {
         try {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
-             censusAnalyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_MISSING);
+            censusAnalyser.loadIndianCensusCsvData(INDIAN_CENSUS_CSV_MISSING);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
-}
+    @Test
+    public void givenIndianCensusData_WhenSortedOneState_ShouldReturnSortResult() {
+        try {
+            CensusAnaslyser censusAnalyser = new CensusAnaslyser();
+            String SortedCensusData = censusAnalyser.getStateWiseSortedCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            IndianCensusCSV censusCsv[] = new Gson().fromJson(SortedCensusData, IndianCensusCSV[].class);
+            Assert.assertEquals("Andhra Pradesh", censusCsv[0].state);
+        } catch (CensusAnalyserException e) {
 
+        }
+    }
+}
