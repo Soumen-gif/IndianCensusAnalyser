@@ -94,8 +94,19 @@ public class CensusAnalyserTest {
             String SortedCensusData = censusAnalyser.getStateCodeSortedCensusData(INDIAN_STATE_CODE_FILE_PATH);
             StateCodeCSV censusCsv[] = new Gson().fromJson(SortedCensusData, StateCodeCSV[].class);
             Assert.assertEquals("Andhra Pradesh New", censusCsv[0].state);
-          } catch (CensusAnalyserException e) {
+        } catch (CensusAnalyserException e) {
 
         }
+    }
+        @Test
+        public void givenIndianCensusData_Populationwise_Code_ShouldReturnSortResult() {
+            try {
+                CensusAnaslyser censusAnalyser = new CensusAnaslyser();
+                String SortedCensusData = censusAnalyser.getStatePopulousSortedCensusData(INDIAN_CENSUS_FILE_PATH);
+                IndianCensusCSV censusCsv[] = new Gson().fromJson(SortedCensusData, IndianCensusCSV[].class);
+                Assert.assertEquals("Uttarakhand", censusCsv[0].state);
+            } catch (CensusAnalyserException e) {
+
+            }
     }
 }
