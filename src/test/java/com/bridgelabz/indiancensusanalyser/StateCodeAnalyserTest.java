@@ -24,7 +24,6 @@ public class StateCodeAnalyserTest {
         } catch (CensusAnalyserException e) {
         }
     }
-
     @Test
     public void givenStaeCode_CSV_WithWrongFile_Path_ShouldThrowException() {
         try {
