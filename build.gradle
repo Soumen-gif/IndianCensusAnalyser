@@ -18,4 +18,6 @@ dependencies {
 }
 dependencies {
     compile "com.opencsv:opencsv:4.0"
+
+    compile(files("E:\\IndianCensusAnalyser\\lib\\CsvBuilderProject1.jar"))
 }
