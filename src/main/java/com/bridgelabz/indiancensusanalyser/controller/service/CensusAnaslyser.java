@@ -81,6 +81,14 @@ public class CensusAnaslyser {
         this.sort(csvFileList,censusComparator);
         return new Gson().toJson(csvFileList);
     }
+    public String getAreaInSqKmWiseSortedCensusData() throws CensusAnalyserException {
+        if(csvFileList == null || csvFileList.size() == 0){
+            throw new CensusAnalyserException("NO Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IndianCensusCSV> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
+        this.sort(csvFileList,censusComparator);
+        return new Gson().toJson(csvFileList);
+    }
 
     public void sort (List<IndianCensusCSV> csvFileList, Comparator<IndianCensusCSV> censusComparator) {
         for (int i = 0; i < csvFileList.size(); i++) {

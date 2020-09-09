@@ -58,7 +58,6 @@ public class StateCodeAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
-
     @Test
     public void givenIndianCensusData_WhenSortedOneState_Code_ShouldReturnSortResult() {
         try {
@@ -69,6 +68,5 @@ public class StateCodeAnalyserTest {
         } catch (CensusAnalyserException e) {
 
         }
-
     }
 }
