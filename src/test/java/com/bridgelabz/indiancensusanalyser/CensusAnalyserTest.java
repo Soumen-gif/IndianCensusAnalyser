@@ -95,7 +95,7 @@ public class CensusAnalyserTest {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
             String SortedCensusData = censusAnalyser.getStateCodeSortedCensusData(INDIAN_STATE_CODE_FILE_PATH);
             StateCodeCSV censusCsv[] = new Gson().fromJson(SortedCensusData, StateCodeCSV[].class);
-            Assert.assertEquals("Andhra Pradesh New", censusCsv[0].state);
+            Assert.assertEquals("Andhra Pradesh New", censusCsv[0].stateCode);
         } catch (CensusAnalyserException e) {
 
         }

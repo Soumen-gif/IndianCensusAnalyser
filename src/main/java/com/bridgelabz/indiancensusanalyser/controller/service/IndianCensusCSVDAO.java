@@ -5,12 +5,11 @@ public class IndianCensusCSVDAO {
     public int densityPerSqKm;
     public int areaInSqKm;
     public int population;
-
-
-    public IndianCensusCSVDAO(IndianCensusCSV indianCensusCSV) {
+     IndianCensusCSVDAO(IndianCensusCSV indianCensusCSV) {
         densityPerSqKm = indianCensusCSV.densityPerSqKm;
         areaInSqKm = indianCensusCSV.areaInSqKm;
         population = indianCensusCSV.population;
         state = indianCensusCSV.state;
     }
+
 }

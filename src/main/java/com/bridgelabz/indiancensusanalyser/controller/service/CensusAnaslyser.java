@@ -16,11 +16,12 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 public class CensusAnaslyser {
-    //List<IndianCensusCSV> csvFileList = null;
-    List<IndianCensusCSVDAO> csvFileList;
-
+    List<IndianCensusCSVDAO> csvFileList= null;
+    List<StateCodeCSVDAO> stateList = null;
     public void CensusAnalyser() {
-        this.csvFileList = new ArrayList<IndianCensusCSVDAO>();
+        this.csvFileList = new ArrayList<>();
+        this.stateList = new ArrayList<>();
+
     }
 
     public int loadIndianCensusCsvData(String csvFilePath) throws CensusAnalyserException {
@@ -40,8 +41,11 @@ public class CensusAnaslyser {
     public int StateCodeCSVData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            List<StateCodeCSV> csvFileList = csvBuilder.getCSVFileList(reader, StateCodeCSV.class);
-            return csvFileList.size();
+            Iterator<StateCodeCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, StateCodeCSV.class);
+            while (csvFileIterator.hasNext()) {
+                this.stateList.add(new StateCodeCSVDAO(csvFileIterator.next()));
+            }
+            return stateList.size();
         } catch (Exception | CSVBuilderException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -99,7 +103,6 @@ public class CensusAnaslyser {
         this.sort(csvFileList,censusComparator);
         return new Gson().toJson(csvFileList);
     }
-
     public void sort (List<IndianCensusCSVDAO> csvFileList, Comparator<IndianCensusCSVDAO> censusComparator) {
         for (int i = 0; i < csvFileList.size(); i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {
