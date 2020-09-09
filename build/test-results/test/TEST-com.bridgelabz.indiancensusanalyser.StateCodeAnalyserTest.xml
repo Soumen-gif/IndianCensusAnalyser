@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-09-09T13:54:50" hostname="DESKTOP-H88E5E6" time="0.287">
+<testsuite name="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-09-09T15:50:22" hostname="DESKTOP-H88E5E6" time="0.572">
   <properties/>
-  <testcase name="given_StateCodeCSV_Should_ReturnsCorrectRecords" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.059"/>
+  <testcase name="given_StateCodeCSV_Should_ReturnsCorrectRecords" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.322"/>
   <testcase name="givenWrongDelimiter_InIndiaStateCodeData_ShouldReturnCustomExceptionType" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.002"/>
-  <testcase name="givenStaeCode_CSV_WithWrongFile_ShouldThrowException" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.215"/>
-  <testcase name="givenIndianCensusData_WhenSortedOneState_Code_ShouldReturnSortResult" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.007"/>
-  <testcase name="givenStaeCode_CSV_WithWrongFile_Path_ShouldThrowException" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.001"/>
+  <testcase name="givenStaeCode_CSV_WithWrongFile_ShouldThrowException" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.233"/>
+  <testcase name="givenIndianCensusData_WhenSortedOneState_Code_ShouldReturnSortResult" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.009"/>
+  <testcase name="givenStaeCode_CSV_WithWrongFile_Path_ShouldThrowException" classname="com.bridgelabz.indiancensusanalyser.StateCodeAnalyserTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

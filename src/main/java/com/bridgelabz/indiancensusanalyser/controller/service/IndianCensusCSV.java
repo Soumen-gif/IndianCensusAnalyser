@@ -7,7 +7,7 @@ public class IndianCensusCSV {
     public String state;
 
     @CsvBindByName(required = true)
-    public String population;
+    public int population;
 
     @CsvBindByName(required = true)
     public int areaInSqKm;
