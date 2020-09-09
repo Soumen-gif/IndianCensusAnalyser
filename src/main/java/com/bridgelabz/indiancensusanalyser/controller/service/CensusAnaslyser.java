@@ -42,9 +42,12 @@ public class CensusAnaslyser {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<StateCodeCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, StateCodeCSV.class);
-            while (csvFileIterator.hasNext()) {
-                this.stateList.add(new StateCodeCSVDAO(csvFileIterator.next()));
-            }
+            Iterable<StateCodeCSV> csvIterable = ()-> csvFileIterator;
+            StreamSupport.stream(csvIterable.spliterator(),false)
+                    .forEach(stateList->this.stateList.add(Integer.parseInt(stateList.stateCode),new StateCodeCSVDAO((stateList))));
+//            while (csvFileIterator.hasNext()) {
+//                this.stateList.add(new StateCodeCSVDAO(csvFileIterator.next()));
+//            }
             return stateList.size();
         } catch (Exception | CSVBuilderException e) {
             throw new CensusAnalyserException(e.getMessage(),
