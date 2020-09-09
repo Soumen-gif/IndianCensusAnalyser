@@ -69,5 +69,6 @@ public class StateCodeAnalyserTest {
         } catch (CensusAnalyserException e) {
 
         }
+
     }
 }
