@@ -20,17 +20,17 @@ package com.bridgelabz.indiancensusanalyser.controller.model;
     }
 
     public CensusCSVDAO(USCensusCSV censusCSV) {
-        state= censusCSV.state;
+        state= censusCSV.State;
         stateCode=censusCSV.StateId;
         population=censusCSV.Population;
         PopulationDensity=censusCSV.PopulationDensity;
-        Totalarea=censusCSV.Totalarea;
+        Totalarea=censusCSV.totalarea;
     }
 
-    public CensusCSVDAO(StateCodeCSV censusCSV) {
-        stateName = censusCSV.stateName;
-        stateCode = censusCSV.stateCode;
-        SrNo =censusCSV.SrNo;
-        TIN = censusCSV.TIN;
+    public CensusCSVDAO(StateCodeCSV StatecensusCSV) {
+        stateName = StatecensusCSV.stateName;
+        stateCode = StatecensusCSV.stateCode;
+        SrNo =StatecensusCSV.SrNo;
+        TIN = StatecensusCSV.TIN;
     }
 }

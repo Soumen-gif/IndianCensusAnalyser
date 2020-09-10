@@ -19,7 +19,7 @@ public class StateCodeAnalyserTest {
         try {
             CensusAnaslyser censusAnaslyser = new CensusAnaslyser();
             int numOfRecords = censusAnaslyser.StateCodeCSVData(INDIAN_STATE_CODE_FILE_PATH);
-            Assert.assertEquals(37, numOfRecords);
+            Assert.assertEquals(36, numOfRecords);
         } catch (CensusAnalyserException e) {
         }
     }
@@ -61,7 +61,7 @@ public class StateCodeAnalyserTest {
     public void givenIndianCensusData_WhenSortedOneState_Code_ShouldReturnSortResult() {
         try {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
-            String SortedCensusData = censusAnalyser.getStatePopulousSortedCensusData(INDIAN_STATE_CODE_FILE_PATH);
+            String SortedCensusData = censusAnalyser.getStatePopulousSortedCensusData();
             IndianCensusCSV censusCsv[] = new Gson().fromJson(SortedCensusData, IndianCensusCSV[].class);
             Assert.assertEquals("Andhra Pradesh New", censusCsv[0].state);
         } catch (CensusAnalyserException e) {

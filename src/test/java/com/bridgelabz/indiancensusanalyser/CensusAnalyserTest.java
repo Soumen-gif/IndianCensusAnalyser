@@ -2,6 +2,7 @@ package com.bridgelabz.indiancensusanalyser;
 
 import com.bridgelabz.indiancensusanalyser.controller.model.IndianCensusCSV;
 import com.bridgelabz.indiancensusanalyser.controller.model.StateCodeCSV;
+import com.bridgelabz.indiancensusanalyser.controller.model.USCensusCSV;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,13 +12,13 @@ import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
 
 public class CensusAnalyserTest {
     private static final String INDIAN_CENSUS_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
+            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "\"E:\\\\IndianCensusAnalyser\\\\src\\\\test";
     private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER =
             "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
     private static final String INDIAN_CENSUS_CSV_MISSING = "./src/test/resources/IndiaStateCensusDataMissingHeader.csv";
     private static final String US_CENSUS_CSV_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\USCensusData.csv";;
+            "E:\\IndianCensusAnalyser\\src\\test\\resources\\USCensusData.csv";
     private final String INDIA_CENSUS_CSV_FILE_PATH =
             "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
     private static final String INDIAN_STATE_CODE_FILE_PATH =
@@ -106,7 +107,7 @@ public class CensusAnalyserTest {
     public void givenIndianCensusData_Populationwise_Code_ShouldReturnSortResult() {
         try {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
-            String SortedCensusData = censusAnalyser.getStatePopulousSortedCensusData(INDIAN_CENSUS_FILE_PATH);
+            String SortedCensusData = censusAnalyser.getStatePopulousSortedCensusData();
             IndianCensusCSV censusCsv[] = new Gson().fromJson(SortedCensusData, IndianCensusCSV[].class);
             Assert.assertEquals("Uttarakhand", censusCsv[0].state);
         } catch (CensusAnalyserException e) {
@@ -126,18 +127,20 @@ public class CensusAnalyserTest {
 
         }
     }
+
     @Test
     public void givenIndianCensusData_WhenSortedOnAreaInSqKm_ShouldReturnSortedResult() {
         try {
             CensusAnaslyser censusAnalyser = new CensusAnaslyser();
             censusAnalyser.loadIndianCensusCsvData(INDIAN_CENSUS_FILE_PATH);
-           String SortedCensusData = censusAnalyser.getAreaInSqKmWiseSortedCensusData();
+            String SortedCensusData = censusAnalyser.getAreaInSqKmWiseSortedCensusData();
             IndianCensusCSV[] censusCSV = new Gson().fromJson(SortedCensusData, IndianCensusCSV[].class);
             Assert.assertEquals(342239, censusCSV[censusCSV.length - 1].areaInSqKm);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
     }
+
     @Test
     public void givenUS_CensusData_Should_Return_Currect_Records() {
         try {
@@ -145,6 +148,19 @@ public class CensusAnalyserTest {
             int usCensusDataCount = censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals("51", usCensusDataCount);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenUSCensusData_Sorted_ShouldReturn_SortedValues() {
+        try {
+            CensusAnaslyser censusAnalyser = new CensusAnaslyser();
+            censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getUSPopulationSortedCensusData();
+            USCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
+            Assert.assertEquals("AK", censusCSV[0].Population);
+
+        } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
     }
