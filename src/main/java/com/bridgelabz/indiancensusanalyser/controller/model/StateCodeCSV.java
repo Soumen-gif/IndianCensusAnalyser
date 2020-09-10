@@ -1,4 +1,4 @@
-package com.bridgelabz.indiancensusanalyser.controller.service;
+package com.bridgelabz.indiancensusanalyser.controller.model;
 
 import com.opencsv.bean.CsvBindByName;
 public class StateCodeCSV {

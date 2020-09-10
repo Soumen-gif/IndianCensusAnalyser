@@ -1,8 +1,7 @@
 package com.bridgelabz.indiancensusanalyser;
 import com.bridgelabz.indiancensusanalyser.controller.Exception.CensusAnalyserException;
 import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
-import com.bridgelabz.indiancensusanalyser.controller.service.IndianCensusCSV;
-import com.bridgelabz.indiancensusanalyser.controller.service.StateCodeCSV;
+import com.bridgelabz.indiancensusanalyser.controller.model.IndianCensusCSV;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
