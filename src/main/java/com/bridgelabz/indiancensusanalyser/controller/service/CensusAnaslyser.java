@@ -27,7 +27,7 @@ public class CensusAnaslyser {
         this.csvFileList = new ArrayList<>();
         this.stateList = new ArrayList<>();
         this.stateCensusMap = new HashMap<>();
-       this.stateCodeMap = new HashMap<>();
+        this.stateCodeMap = new HashMap<>();
     }
 
     public int loadIndianCensusCsvData(String csvFilePath) throws CensusAnalyserException {
@@ -44,6 +44,7 @@ public class CensusAnaslyser {
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
     }
+
     public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -59,6 +60,7 @@ public class CensusAnaslyser {
         }
 
     }
+
     public int StateCodeCSVData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
