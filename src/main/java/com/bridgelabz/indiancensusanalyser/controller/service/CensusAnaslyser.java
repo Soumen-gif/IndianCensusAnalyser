@@ -70,12 +70,6 @@ public class CensusAnaslyser {
         return this.loadCensusData(csvFilePath, StateCodeCSV.class);
     }
 
-//    private <E> int getCount(Iterator<E> iterator) {
-//        Iterable<E> statesCodeIterable = () -> iterator;
-//        int numberOfEntries = (int) StreamSupport.stream(statesCodeIterable.spliterator(), false).count();
-//        return numberOfEntries;
-//    }
-
     public String getStateWiseSortedCensusData() throws CensusAnalyserException {
         if (CensusMap == null || CensusMap.size() == 0) {
             throw new CensusAnalyserException("NO Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
