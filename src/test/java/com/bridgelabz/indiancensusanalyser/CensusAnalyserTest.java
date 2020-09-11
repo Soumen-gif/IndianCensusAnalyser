@@ -12,18 +12,13 @@ import com.bridgelabz.indiancensusanalyser.controller.service.CensusAnaslyser;
 
 public class CensusAnalyserTest {
     private static final String INDIAN_CENSUS_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndiaStateCensusData.csv";
+            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "\"E:\\\\IndianCensusAnalyser\\\\src\\\\test";
     private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER =
             "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
     private static final String INDIAN_CENSUS_CSV_MISSING = "./src/test/resources/IndiaStateCensusDataMissingHeader.csv";
     private static final String US_CENSUS_CSV_FILE_PATH =
             "E:\\IndianCensusAnalyser\\src\\test\\resources\\USCensusData.csv";
-    private final String INDIA_CENSUS_CSV_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCensusData.csv";
-    private static final String INDIAN_STATE_CODE_FILE_PATH =
-            "E:\\IndianCensusAnalyser\\src\\test\\resources\\IndianStateCode.csv";
-
     @Test
     public void given_IndianCensusCSVFile_Should_ReturnsCorrectRecords() {
         try {
@@ -151,6 +146,7 @@ public class CensusAnalyserTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void givenUSCensusData_Sorted_ShouldReturn_SortedValues() {
         try {
@@ -162,6 +158,19 @@ public class CensusAnalyserTest {
 
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenUSCensusData_SortedByPopulationDensity_ShouldReturn_SortedValues() {
+        try {
+            CensusAnaslyser censusAnalyser = new CensusAnaslyser();
+            censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getPopulationDensityWiseSortedCensusDataForUS();
+            USCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
+            Assert.assertEquals("AK", censusCSV[0].StateId);
+
+        } catch (CensusAnalyserException e) {
         }
     }
 }
